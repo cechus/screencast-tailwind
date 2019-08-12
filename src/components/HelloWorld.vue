@@ -1,58 +1,112 @@
 <template>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
-    <p>
-      For a guide and recipes on how to configure / customize this project,<br>
-      check out the
-      <a href="https://cli.vuejs.org" target="_blank" rel="noopener">vue-cli documentation</a>.
-    </p>
-    <h3>Installed CLI Plugins</h3>
-    <ul>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-babel" target="_blank" rel="noopener">babel</a></li>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-eslint" target="_blank" rel="noopener">eslint</a></li>
-    </ul>
-    <h3>Essential Links</h3>
-    <ul>
-      <li><a href="https://vuejs.org" target="_blank" rel="noopener">Core Docs</a></li>
-      <li><a href="https://forum.vuejs.org" target="_blank" rel="noopener">Forum</a></li>
-      <li><a href="https://chat.vuejs.org" target="_blank" rel="noopener">Community Chat</a></li>
-      <li><a href="https://twitter.com/vuejs" target="_blank" rel="noopener">Twitter</a></li>
-      <li><a href="https://news.vuejs.org" target="_blank" rel="noopener">News</a></li>
-    </ul>
-    <h3>Ecosystem</h3>
-    <ul>
-      <li><a href="https://router.vuejs.org" target="_blank" rel="noopener">vue-router</a></li>
-      <li><a href="https://vuex.vuejs.org" target="_blank" rel="noopener">vuex</a></li>
-      <li><a href="https://github.com/vuejs/vue-devtools#vue-devtools" target="_blank" rel="noopener">vue-devtools</a></li>
-      <li><a href="https://vue-loader.vuejs.org" target="_blank" rel="noopener">vue-loader</a></li>
-      <li><a href="https://github.com/vuejs/awesome-vue" target="_blank" rel="noopener">awesome-vue</a></li>
-    </ul>
+  <div>
+    <!-- <h1 class="text-4xl font-bold text-center text-blue-500">Hello World</h1> -->
+    <div class="flex bg-gray-100">
+      <div class="px-8 py-12 max-w-sm mx-auto sm:max-w-xl lg:w-1/2 lg:max-w-full lg:py-24 lg:px-24">
+        <div class="xl:max-w-lg xl:ml-auto">
+          <img class="h-40 lg:h-30" src="/img/logo.png" />
+          <img
+            class="mt-6 rounded-lg shadow-xl sm:mt-8 sm:h-64 sm:w-full sm:object-cover sm:object-center lg:hidden"
+            src="/img/beach.jpg"
+            alt
+          />
+          <h1 class="mt-6 text-2xl font-bold text-gray-900 leading-tight lg:text-4xl xl:text-5xl">
+            You can work form anywhere.
+            <br class="hidden lg:inline" />
+            <span class="text-red-500">Take advantage or it.</span>
+          </h1>
+          <p
+            class="mt-2 text-gray-600 sm:mt-4 sm:text-xl"
+          >Workcation help you find work-friendly rentals in beautiful locations so you can enjoy some nice weather even when you're not on vacation.</p>
+          <div class="mt-4 sm:mt-6">
+            <a href="#" class="btn btn-red shadow-lg sm:text-base">Book your escape</a>
+            <a href="#" class="ml-2 btn btn-gray shadow-lg sm:text-base">Learn more</a>
+          </div>
+        </div>
+      </div>
+      <div class="hidden lg:block lg:w-1/2 lg:relative">
+        <img
+          class="absolute inset-0 h-full w-full object-cover object-center"
+          src="/img/beach.jpg"
+          alt
+        />
+      </div>
+    </div>
+    <div>
+      <div class="max-w-md sm:max-w-xl lg:max-w-6xl mx-auto px-8 lg:px-12 py-8">
+        <h2 class="text-xl text-gray-900">Popular destinations</h2>
+        <p
+          class="text-gray-600"
+        >A selection of great work-friendly cities with lots to see and explore.</p>
+        <div class="flex flex-wrap -mx-4">
+          <div
+            class="mt-6 w-full px-4 lg:w-1/2 xl:w-1/3"
+            v-for="(destination, index) in popularDestinations"
+            :key="index"
+          >
+            <DestinationCard :destination="destination" />
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
+import DestinationCard from './DestinationCard'
+
 export default {
   name: 'HelloWorld',
-  props: {
-    msg: String
+  components: {
+    DestinationCard
+  },
+  data () {
+    return {
+      popularDestinations: [
+        {
+          city: 'Toronto',
+          averagePrice: 120,
+          propertyCount: 76,
+          imageUrl: '/img/toronto.jpg',
+          imageAlt: 'Toronto skyline'
+        },
+        {
+          city: 'Malibu',
+          averagePrice: 215,
+          propertyCount: 43,
+          imageUrl: '/img/malibu.jpg',
+          imageAlt: 'Cliff in Malibu'
+        },
+        {
+          city: 'Chicago',
+          averagePrice: 130,
+          propertyCount: 115,
+          imageUrl: '/img/chicago.jpg',
+          imageAlt: 'Chicago skyline'
+        },
+        {
+          city: 'Seattle',
+          averagePrice: 135,
+          propertyCount: 63,
+          imageUrl: '/img/seattle.jpg',
+          imageAlt: 'Seattle skyline'
+        },
+        {
+          city: 'Colorado',
+          averagePrice: 85,
+          propertyCount: 47,
+          imageUrl: '/img/colorado.jpg',
+          imageAlt: 'Lake in Colorado'
+        },
+        {
+          city: 'Miami',
+          averagePrice: 115,
+          propertyCount: 86,
+          imageUrl: '/img/miami.jpg',
+          imageAlt: 'Beach in Miami'
+        }
+      ]
+    }
   }
 }
 </script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-h3 {
-  margin: 40px 0 0;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
-</style>
